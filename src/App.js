@@ -1,23 +1,42 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react"
 
 function App() {
+  const [profile, setProfile] = useState({});
+
+  const handleChange = (({target}) => {
+    const {firstName, familyName, email} = target;
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      [target.name]: target.value
+    }))
+    console.log(profile)
+  } )
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(JSON.stringify(profile, '', 2))
+    setProfile({});
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Test
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      
+        <h1>Aloha</h1>
+        <form onSubmit={handleSubmit}>
+        <input placeholder='First Name' onChange={handleChange} name='firstName' value={profile.name}></input>
+        <input placeholder='Family Name'  onChange={handleChange} name='familyName'></input>
+        <input placeholder='email'  onChange={handleChange} name='email'></input>
+        <button>Submit</button>
+        </form>
+      
+      
     </div>
   );
 }
