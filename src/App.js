@@ -12,6 +12,8 @@ function App() {
       [target.name]: target.value
     }))
     console.log(profile)
+    console.log(firstName)
+    console.log(target)
   } )
 
   const handleSubmit = (event) => {
